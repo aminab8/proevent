@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:proevent/pages/signin.dart';
-
 class ButtomWelcome extends StatelessWidget{
   const ButtomWelcome({super.key,this.buttomText,this.onTap,this.color,this.textColor});
   final String? buttomText ;
@@ -24,7 +22,7 @@ class ButtomWelcome extends StatelessWidget{
          ),
        ),
        child: Text(
-         buttomText!,style: TextStyle(fontSize: 20.0,
+         buttomText!,style: TextStyle(fontSize: 15.0,
            fontWeight: FontWeight.bold,color: textColor!),
 
        ),

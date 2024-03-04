@@ -13,6 +13,7 @@ class SignIn extends StatefulWidget{
 class _SignInState extends  State<SignIn>{
    TextEditingController usernameController= TextEditingController();
    TextEditingController  passwordController= TextEditingController();
+   TextEditingController emailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return CustomScafflod(
@@ -58,11 +59,11 @@ class _SignInState extends  State<SignIn>{
                 ),
                 const SizedBox( height: 10),
                 ElevatedButton(onPressed: (){
-                  Get.to(UserInformation(username: usernameController.text.toString(), password: passwordController.text.toString(),));
+                  Get.to(UserInformation(username: usernameController.text.toString(), password: passwordController.text.toString(), email: emailController.text.toString(),));
                 }
 
                     , child: Text("sign in")),
-                const SizedBox( height: 50),
+                const SizedBox( height: 10),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal:10.0,vertical: 0),
                   child: const Row(
@@ -77,7 +78,7 @@ class _SignInState extends  State<SignIn>{
                         color: Colors.black,
                       ),
                       ),
-                Text("Or continue with Google",style: TextStyle(fontSize: 20,color: Colors.red),),
+                      Text("Or continue with Google",style: TextStyle(fontSize: 20,color: Colors.red),),
                 Image(image: AssetImage('assets/google.png'),height: 50.0,),
                 Expanded(child: Divider(
                   thickness: 0.5,

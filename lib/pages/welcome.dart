@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:proevent/component/buttom_welcome.dart';
 import 'package:proevent/pages/signin.dart';
 import 'package:proevent/pages/signup.dart';
-
 import '../component/custom_scafflod.dart';
 
 class Welcome extends StatelessWidget{

@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:proevent/component/mybuttomsignup.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:proevent/pages/user_information.dart';
 import '../component/custom_scafflod.dart';
 import '../component/mytexte_field.dart';
 
@@ -39,9 +41,9 @@ class _SignUpState extends  State<SignUp>{
          child: Column(
          mainAxisAlignment: MainAxisAlignment.center,
          children: [
-         SizedBox( height: 50),
+         SizedBox( height: 10),
       Text("Get Started !",style: TextStyle(fontSize: 40, color: Colors.black),),
-      const SizedBox(height: 25),
+      const SizedBox(height: 15),
       MyTextField(
         controller: usernameController,
         hintText: 'UserName',
@@ -50,22 +52,28 @@ class _SignUpState extends  State<SignUp>{
       const SizedBox( height: 10),
            MyTextField(
              controller: emailController,
-             hintText: 'Email',
-             obscureText: true,
+             hintText: 'Email : ',
+             obscureText: false,
            ),
            const SizedBox( height: 10),
       MyTextField(
         controller: passwordController,
         hintText: 'Password',
-        obscureText: true,
+        obscureText: false,
       ),
       const SizedBox( height: 10),
-      Padding(padding: EdgeInsets.symmetric(horizontal: 25.0),
-      ),
+           MyTextField(
+             controller: passwordController,
+             hintText: 'Confirm password',
+             obscureText: false,
+           ),
       const SizedBox( height: 10),
-      MyButtonSignUp(
-      ),
-      const SizedBox( height: 50),
+           ElevatedButton(onPressed: (){
+             Get.to(UserInformation(username: usernameController.text.toString(), password: passwordController.text.toString(), email: emailController.text.toString(),));
+           }
+
+               , child: Text("sign up ")),
+
       ],
       ),
     ),
