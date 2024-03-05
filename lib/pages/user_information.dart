@@ -5,14 +5,14 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:proevent/pages/addevents.dart';
 import 'package:proevent/pages/welcome.dart';
 import '../component/custom_scafflod.dart';
+import '../view/settings.dart';
 
 class UserInformation extends StatefulWidget {
-  final String username;
   final String password;
   final String email;
 
   UserInformation(
-      {required this.username, required this.password, required this.email});
+      {  required this.email, required this.password});
 
   @override
   _UserInformationState createState() => _UserInformationState();
@@ -42,15 +42,13 @@ class _UserInformationState extends State<UserInformation> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Text('Name: ${widget.username}',
+                    Text('email  : ${widget.email}',
                       style: TextStyle(fontSize: 20, color: Colors.black, height: 10),
                     ),
-                    Text('password: ${widget.password}',
-                      style: TextStyle(fontSize: 20, color: Colors.black),
+                    Text('password  : ${widget.password}',
+                      style: TextStyle(fontSize: 20, color: Colors.black, height: 10),
                     ),
-                    Text('email  : ${widget.email}',
-                      style: TextStyle(fontSize: 20, color: Colors.black, height: 20),
-                    ),
+
                   ],
                 ),
               ),
@@ -67,7 +65,9 @@ class _UserInformationState extends State<UserInformation> {
                   break;
                 case 1:
                   Get.to(() => AddEvents());
-                  break;
+                case 2 :
+                  Get.to (() =>  SettingsPage());
+              break;
 
               }
 

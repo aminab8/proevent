@@ -17,9 +17,7 @@ class ButtomWelcome extends StatelessWidget{
        padding: EdgeInsets.all(30.0),
        decoration: BoxDecoration(
          color:color!,
-         borderRadius: const BorderRadius.only(
-           topLeft: Radius.circular(50),
-         ),
+
        ),
        child: Text(
          buttomText!,style: TextStyle(fontSize: 15.0,
