@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:proevent/pages/user_information.dart';
+import 'package:proevent/view/home.dart';
+import 'package:proevent/view/settings.dart';
 import '../model/employee.dart';
+import '../pages/addevents.dart';
+import '../pages/choose_page.dart';
 
 class LoginController extends GetxController {
   final TextEditingController emailController = TextEditingController();
@@ -25,6 +30,7 @@ class LoginController extends GetxController {
 class LoginPage extends StatelessWidget {
   final LoginController _controller = Get.put(LoginController());
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +41,7 @@ class LoginPage extends StatelessWidget {
         backgroundColor: Colors.white,
         leading: IconButton(
           onPressed: () {
-            Get.back();
+           Get.back();
           },
           icon: Icon(
             Icons.arrow_back_ios,
@@ -75,43 +81,16 @@ class LoginPage extends StatelessWidget {
                     child: Column(
                       children: <Widget>[
                         _inputField(label: "Email", controller: _controller.emailController),
-                        _inputField(label: "Username", controller: _controller.usernameController),
+                       // _inputField(label: "Username", controller: _controller.usernameController),
                         _inputField(label: "Password", obscureText: true, controller: _controller.passwordController),
                       ],
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 40),
-                    child: Container(
-                      padding: EdgeInsets.only(top: 3, left: 3),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(50),
-                        border: Border(
-                          bottom: BorderSide(color: Colors.black),
-                          top: BorderSide(color: Colors.black),
-                          left: BorderSide(color: Colors.black),
-                          right: BorderSide(color: Colors.black),
-                        ),
-                      ),
-                      child: MaterialButton(
-                        minWidth: double.infinity,
-                        height: 60,
-                        onPressed: _controller.login,
-                        color: Color(0xff0095FF),
-                        elevation: 0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(50),
-                        ),
-                        child: Text(
-                          "Login",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 18,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Get.to(Home());
+                    },
+                    child: Text("Login"),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -128,6 +107,7 @@ class LoginPage extends StatelessWidget {
                             fontSize: 18,
                           ),
                         ),
+
                       )
                     ],
                   ),
@@ -146,6 +126,38 @@ class LoginPage extends StatelessWidget {
             ),
           ],
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.event),
+            label: 'Event',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: 'Settings',
+          ),
+        ],
+        onTap: (index) {
+          switch (index) {
+            case 0:
+            // Naviguer vers ChoosePage
+              Get.offAll(ChoosePage());
+              break;
+            case 1:
+            // Naviguer vers AddEvents
+              Get.offAll(AddEvents());
+              break;
+            case 2:
+            // Naviguer vers SettingsPage
+              Get.offAll(SettingsPage());
+              break;
+          }
+        },
       ),
     );
   }

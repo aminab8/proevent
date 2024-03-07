@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:proevent/view/settings.dart';
 import '../model/employee.dart';
+import '../pages/addevents.dart';
+import '../pages/choose_page.dart';
 import 'login.dart';
 
 class RegistrationController extends GetxController {
@@ -26,7 +29,7 @@ class RegistrationController extends GetxController {
     // Additional actions after successful registration can be added here
 
     // Navigate to the LoginPage
-    Get.offNamed('/login');
+    Get.toNamed('/employee', arguments: employee);
   }
 }
 
@@ -55,8 +58,8 @@ class EmployeeRegistrationForm extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 40),
-          height: MediaQuery.of(context).size.height - 50,
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          height: MediaQuery.of(context).size.height - 20,
           width: double.infinity,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -70,7 +73,7 @@ class EmployeeRegistrationForm extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 20),
+                  SizedBox(height: 5),
                   Text(
                     "Create an account to get started",
                     style: TextStyle(
@@ -90,65 +93,56 @@ class EmployeeRegistrationForm extends StatelessWidget {
                   _buildTextField('Confirm Password', _controller.confirmPasswordController, obscureText: true),
                   SizedBox(height: 5),
                   _buildTextField('ID', _controller.idController),
-                ],
-              ),
-              Container(
-                padding: EdgeInsets.only(top: 3, left: 3),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                  border: Border(
-                    bottom: BorderSide(color: Colors.black),
-                    top: BorderSide(color: Colors.black),
-                    left: BorderSide(color: Colors.black),
-                    right: BorderSide(color: Colors.black),
-                  ),
-                ),
-                child: MaterialButton(
-                  minWidth: double.infinity,
-                  height: 60,
-                  onPressed: _controller.handleRegistration,
-                  color: Color(0xff0095FF),
-                  elevation: 0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50),
-                  ),
-                  child: Text(
-                    "Sign up",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 18,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text("Already have an account?"),
-                  GestureDetector(
-                    onTap: () {
-                      Get.to(() => LoginPage());
+                  ElevatedButton(
+                    onPressed: () {
+                      Get.to(LoginPage());
                     },
-                    child: Text(
-                      " Login",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 18,
-                        color: Color(0xff0095FF),
-                      ),
-                    ),
-                  )
+                    child: Text("Sign up "),
+                  ),
                 ],
               ),
+
             ],
           ),
         ),
       ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.event),
+            label: 'Event',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: 'Settings',
+          ),
+        ],
+        onTap: (index) {
+          switch (index) {
+            case 0:
+            // Naviguer vers ChoosePage
+              Get.offAll(ChoosePage());
+              break;
+            case 1:
+            // Naviguer vers AddEvents
+              Get.offAll(AddEvents());
+              break;
+            case 2:
+            // Naviguer vers SettingsPage
+              Get.offAll(SettingsPage());
+              break;
+          }
+        },
+      ),
     );
   }
 
-  Widget _buildTextField(String label, TextEditingController controller, {bool obscureText = false, RxString? error}) {
+  Widget _buildTextField(String label, TextEditingController controller,
+      {bool obscureText = false, RxString? error}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
@@ -160,9 +154,7 @@ class EmployeeRegistrationForm extends StatelessWidget {
             color: Colors.black87,
           ),
         ),
-        SizedBox(
-          height: 18,
-        ),
+
         TextField(
           controller: controller,
           obscureText: obscureText,

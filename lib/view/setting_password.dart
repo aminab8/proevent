@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proevent/view/home.dart';
+import 'package:proevent/view/settings.dart';
 
 
 
 import '../model/employee.dart';
+import '../pages/addevents.dart';
+import '../pages/choose_page.dart';
 
 
 class PasswordController extends GetxController {
@@ -47,6 +50,38 @@ class PasswordSettingsPage extends StatelessWidget {
                 child: Text('Save Password'),
               ),
             ]  ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.event),
+            label: 'Event',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: 'Settings',
+          ),
+        ],
+        onTap: (index) {
+          switch (index) {
+            case 0:
+            // Naviguer vers ChoosePage
+              Get.offAll(ChoosePage());
+              break;
+            case 1:
+            // Naviguer vers AddEvents
+              Get.offAll(AddEvents());
+              break;
+            case 2:
+            // Naviguer vers SettingsPage
+              Get.offAll(SettingsPage());
+              break;
+          }
+        },
       ),
     );
   }

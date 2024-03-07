@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:proevent/view/settings.dart';
 import '../model/employee.dart';
+import '../pages/choose_page.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -12,11 +14,11 @@ class _HomePageState extends State<Home> {
   Employee? employee; // Declare a variable to store the passed employee data
 
   @override
-  void initState() {
-    super.initState();
-    // Extract the passed employee data when the page is created
+ void initState() {
+   super.initState();
+    //Extract the passed employee data when the page is created
     employee = Get.arguments as Employee?;
-  }
+ }
 
   @override
   Widget build(BuildContext context) {
@@ -30,12 +32,6 @@ class _HomePageState extends State<Home> {
       ),
       body: _buildBody(),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -45,11 +41,19 @@ class _HomePageState extends State<Home> {
             icon: Icon(Icons.settings),
             label: 'Settings',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-          ),
         ],
+        onTap: (index) {
+          switch (index) {
+            case 0:
+            // Naviguer vers ChoosePage
+              Get.offAll(ChoosePage());
+              break;
+            case 1:
+            // Naviguer vers SettingsPage
+              Get.offAll(SettingsPage());
+              break;
+          }
+        },
       ),
     );
   }
@@ -92,9 +96,9 @@ class ProfilePage extends StatelessWidget {
           Text('Username: ${employee?.username}'),
           SizedBox(height: 10),
           Text('Email: ${employee?.email}'),
-          // Add other fields as needed
+
         ],
       ),
     );
-  }
+   }
 }

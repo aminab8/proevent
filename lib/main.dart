@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:proevent/pages/choose_page.dart';
-import 'package:proevent/pages/welcome.dart';
-import 'package:proevent/view/login.dart';
+import 'package:proevent/pages/loginadmin.dart';
+
+import 'package:proevent/view/registration_employee.dart';
+
 
 
 void main (){
@@ -15,11 +17,13 @@ class MyApp extends StatelessWidget {
   return GetMaterialApp(
   debugShowCheckedModeBanner: false,
   home: ChoosePage(),
+
         initialRoute: '/',
         getPages: [
           GetPage(name: '/', page: () => ChoosePage()),
-          GetPage(name: '/admin', page: () => Welcome()),
-          GetPage(name: '/employee', page: ()=> LoginPage()),
+          GetPage(name: '/admin', page: () => LoginAdmin()),
+          GetPage(name: '/employee', page: ()=> EmployeeRegistrationForm()),
+
         ],
   );
   }
